@@ -1,7 +1,7 @@
 {
-  "name": "fullstackopen-part4",
+  "name": "bloglistr",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple full stack blog list app",
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit",
