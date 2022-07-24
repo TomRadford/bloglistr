@@ -1,11 +1,11 @@
 # Bloglistr
 
-A blog list app created with:
+A pretty, simple blog list app.
 
-## Backend:
+## Backend
 Express and MongoDB   
 
-## Frontend: 
+## Frontend
  React, Redux, React Router and Mantine UI.
 
  ## Why?
