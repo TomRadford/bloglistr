@@ -2,6 +2,11 @@
 
 A pretty, simple blog list app.
 
+## [Try it out here](https://bloglistr.herokuapp.com/)
+Username: demo
+Password: demo
+(or make your own account)
+
 ## Backend
 Express and MongoDB   
 
