@@ -13,6 +13,8 @@ import {
     Button,
     Paper,
     Textarea,
+    Center,
+    Skeleton,
 } from '@mantine/core'
 import { ThumbUp } from 'tabler-icons-react'
 import blogService from '../../services/blogs'
@@ -111,98 +113,155 @@ const Blog = () => {
         })
     }
 
-    if (!blog) return null
     return (
-        <Container>
-            {blog.ogImage ? (
-                <Image radius="md" src={blog.ogImage} />
-            ) : (
-                <Image radius="md" withPlaceholder height={200} />
-            )}
+        <>
+            {blog ? (
+                <Container>
+                    {blog.ogImage ? (
+                        <Image radius="md" src={blog.ogImage} />
+                    ) : (
+                        <Image radius="md" withPlaceholder height={200} />
+                    )}
 
-            <Title order={1}>{blog.title}</Title>
+                    <Title order={1}>{blog.title}</Title>
 
-            <Group position="apart" m={10}>
-                <Text weight={300} size="sm" component="span">
-                    by {blog.author}
-                </Text>
-                <Badge
-                    style={{
-                        cursor: 'pointer',
-                    }}
-                    color="orange"
-                    variant="light"
-                    onClick={() => setLikes(likes + 1)}
-                >
-                    <Group position="center">
-                        <ThumbUp size={12} />
-                        <Text size="xs">{likes}</Text>
-                    </Group>
-                </Badge>
-                <Link
-                    style={{ textDecoration: 'none' }}
-                    to={`/users/${blog.user.id}`}
-                >
-                    <Badge
-                        style={{
-                            cursor: 'pointer',
-                        }}
-                        color="green"
-                        variant="light"
-                    >
-                        {blog.user.name}
-                    </Badge>
-                </Link>
-            </Group>
-
-            <Code m={10} style={{ display: 'block' }}>
-                <a href={blog.url}>{blog.url}</a>
-            </Code>
-
-            <Group position="right">
-                <Button variant="subtle" color="red" onClick={handleDeleteBlog}>
-                    Delete
-                </Button>
-            </Group>
-
-            <Title order={3} align="center" m={5}>
-                Comments
-            </Title>
-            <form onSubmit={handleComment}>
-                <Textarea
-                    id="message"
-                    placeholder="Comment"
-                    autosize
-                    minRows={2}
-                    required
-                />
-                <Button
-                    fullWidth
-                    m={10}
-                    variant="subtle"
-                    color="dark"
-                    type="submit"
-                >
-                    Add comment
-                </Button>
-            </form>
-            <Group position="center">
-                {blog.comments.map((comment) => (
-                    <Paper
-                        style={{ width: '70%' }}
-                        mb={15}
-                        shadow="xs"
-                        p="lg"
-                        key={comment.id}
-                    >
-                        <Text>{comment.message}</Text>
-                        <Text align="right" size="xs" color="dimmed">
-                            {getDate(comment.createdAt)}
+                    <Group position="apart" m={10}>
+                        <Text weight={300} size="sm" component="span">
+                            by {blog.author}
                         </Text>
-                    </Paper>
-                ))}
-            </Group>
-        </Container>
+                        <Badge
+                            style={{
+                                cursor: 'pointer',
+                            }}
+                            color="orange"
+                            variant="light"
+                            onClick={() => setLikes(likes + 1)}
+                        >
+                            <Group position="center">
+                                <ThumbUp size={12} />
+                                <Text size="xs">{likes}</Text>
+                            </Group>
+                        </Badge>
+                        <Link
+                            style={{ textDecoration: 'none' }}
+                            to={`/users/${blog.user.id}`}
+                        >
+                            <Badge
+                                style={{
+                                    cursor: 'pointer',
+                                }}
+                                color="green"
+                                variant="light"
+                            >
+                                {blog.user.name}
+                            </Badge>
+                        </Link>
+                    </Group>
+
+                    <Code m={10} style={{ display: 'block' }}>
+                        <a href={blog.url}>{blog.url}</a>
+                    </Code>
+
+                    <Group position="right">
+                        <Button
+                            variant="subtle"
+                            color="red"
+                            onClick={handleDeleteBlog}
+                        >
+                            Delete
+                        </Button>
+                    </Group>
+
+                    <Title order={3} align="center" m={5}>
+                        Comments
+                    </Title>
+                    <form onSubmit={handleComment}>
+                        <Textarea
+                            id="message"
+                            placeholder="Comment"
+                            autosize
+                            minRows={2}
+                            required
+                        />
+                        <Button
+                            fullWidth
+                            m={10}
+                            variant="subtle"
+                            color="dark"
+                            type="submit"
+                        >
+                            Add comment
+                        </Button>
+                    </form>
+                    <Group position="center">
+                        {blog.comments.map((comment) => (
+                            <Paper
+                                style={{ width: '70%' }}
+                                mb={15}
+                                shadow="xs"
+                                p="lg"
+                                key={comment.id}
+                            >
+                                <Text>{comment.message}</Text>
+                                <Text align="right" size="xs" color="dimmed">
+                                    {getDate(comment.createdAt)}
+                                </Text>
+                            </Paper>
+                        ))}
+                    </Group>
+                </Container>
+            ) : (
+                <>
+                    <Center>
+                        <Skeleton height="40vh" width="80%" />
+                    </Center>
+                    <Center>
+                        <Skeleton mt={20} height={50} width="80%" />
+                    </Center>
+                    <Center>
+                        <Group
+                            position="apart"
+                            align="center"
+                            style={{
+                                marginTop: 5,
+                                width: '80%',
+                            }}
+                        >
+                            <Skeleton
+                                height={16}
+                                mt={10}
+                                width="20%"
+                                radius="xl"
+                            />
+                            <Skeleton
+                                height={16}
+                                mt={10}
+                                width="15%"
+                                radius="xl"
+                            />
+                            <Skeleton
+                                height={25}
+                                mt={10}
+                                width="30%"
+                                radius="xl"
+                            />
+                        </Group>
+                    </Center>
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Skeleton mt={20} height={20} width="80%" />
+                        <Skeleton mt={20} height={20} width="80%" />
+                        <Skeleton mt={20} height={20} width="80%" />
+                        <Skeleton mt={20} height={20} width="80%" />
+                    </div>
+                </>
+            )}
+        </>
     )
 }
 export default Blog

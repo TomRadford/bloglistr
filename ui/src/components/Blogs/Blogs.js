@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux'
 import BlogItem from './BlogItem'
 import { SimpleGrid, Center } from '@mantine/core'
+import { useEffect, useState } from 'react'
 
 const Blogs = () => {
     const blogs = useSelector(({ blogs }) => blogs)
-
     return (
         <Center>
             <SimpleGrid
@@ -16,9 +16,11 @@ const Blogs = () => {
                     { minWidth: 2000, cols: 4, spacing: 'xl' },
                 ]}
             >
-                {blogs.map((blog) => (
-                    <BlogItem key={blog.id} blog={blog} />
-                ))}
+                {blogs.length === 0
+                    ? [...new Array(6)].map((v, i) => <BlogItem key={i} />)
+                    : blogs.map((blog) => (
+                          <BlogItem key={blog.id} blog={blog} />
+                      ))}
             </SimpleGrid>
         </Center>
     )
