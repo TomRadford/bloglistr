@@ -105,42 +105,47 @@ const BlogItem = ({ blog }) => {
                             </Group>
                         </>
                     ) : (
-                        <>
-                            <Skeleton height={200} />
-                            <Skeleton height={16} mt={10} radius="xl" />
-                            <Skeleton
-                                height={16}
-                                mt={10}
-                                width="30%"
-                                radius="xl"
-                            />
-                            <Group
-                                position="apart"
-                                align="center"
-                                style={{
-                                    marginTop: 5,
-                                }}
-                            >
+                        <MediaQuery
+                            smallerThan="sm"
+                            styles={{ width: 250, margin: 'auto' }}
+                        >
+                            <div>
+                                <Skeleton height={200} width="100%" />
+                                <Skeleton height={16} mt={10} radius="xl" />
                                 <Skeleton
                                     height={16}
-                                    mt={10}
-                                    width="20%"
-                                    radius="xl"
-                                />
-                                <Skeleton
-                                    height={16}
-                                    mt={10}
-                                    width="15%"
-                                    radius="xl"
-                                />
-                                <Skeleton
-                                    height={25}
                                     mt={10}
                                     width="30%"
                                     radius="xl"
                                 />
-                            </Group>
-                        </>
+                                <Group
+                                    position="apart"
+                                    align="center"
+                                    style={{
+                                        marginTop: 5,
+                                    }}
+                                >
+                                    <Skeleton
+                                        height={16}
+                                        mt={10}
+                                        width="20%"
+                                        radius="xl"
+                                    />
+                                    <Skeleton
+                                        height={16}
+                                        mt={10}
+                                        width="15%"
+                                        radius="xl"
+                                    />
+                                    <Skeleton
+                                        height={25}
+                                        mt={10}
+                                        width="30%"
+                                        radius="xl"
+                                    />
+                                </Group>
+                            </div>
+                        </MediaQuery>
                     )}
                 </Card>
             </MediaQuery>
